@@ -1,9 +1,10 @@
 import { Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-export default function Start() {
+
+const Result = () => {
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/quizz");
+  const handleMainMenu = () => {
+    navigate("/");
   };
   return (
     <>
@@ -12,7 +13,7 @@ export default function Start() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <p className="text-white text-[50px] text-center">
-                Test your knowledge
+                Your results are : {localStorage.getItem("userScore")}
               </p>
             </Grid>
             <Grid item xs={12}>
@@ -25,9 +26,9 @@ export default function Start() {
                       backgroundColor: "#83B4FF",
                     },
                   }}
-                  onClick={handleSubmit}
+                  onClick={handleMainMenu}
                 >
-                  Start now
+                  Main Menu
                 </Button>
               </div>
             </Grid>
@@ -36,4 +37,5 @@ export default function Start() {
       </div>
     </>
   );
-}
+};
+export default Result;

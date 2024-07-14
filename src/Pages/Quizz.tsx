@@ -4,7 +4,6 @@ import {
   Button,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
 } from "@mui/material";
@@ -67,25 +66,26 @@ const Quizz = () => {
     newAnswers[currentQuestionIndex] = selectedAnswer;
     setUserAnswers(newAnswers);
     console.log(newAnswers);
-    if (questions[currentQuestionIndex].answer == selectedAnswer) {
-      setUserScore((prevScore) => {
-        const updatedScore = prevScore + 1;
-        console.log(
-          `User score after question ${
-            currentQuestionIndex + 1
-          }: ${updatedScore}`
-        );
-        return updatedScore;
-      });
+
+    let updatedScore = userScore;
+    // All of this is done because of the nature of how React States work
+    // They are updated in an asynchrous way so we don't have the final value of the state
+    if (questions[currentQuestionIndex].answer === selectedAnswer) {
+      updatedScore += 1;
+      setUserScore(updatedScore);
+      console.log(
+        `User score after question ${currentQuestionIndex + 1}: ${updatedScore}`
+      );
     }
+
     if (currentQuestionIndex === questions.length - 1) {
-      alert("You finished the quizz Check your results !" + userScore);
       setCurrentQuestionIndex(0);
+      localStorage.setItem("userScore", updatedScore.toString());
       setUserScore(0);
-      navigate("/");
+      navigate("/result");
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedAnswer(""); // Reset the selected answer for the next question
+      setSelectedAnswer("");
     }
   };
 
