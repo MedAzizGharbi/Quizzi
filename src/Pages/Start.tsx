@@ -13,7 +13,7 @@ export default function Start() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <p className="text-white text-[50px] text-center">
-                Test your knowledge in React
+                Test your knowledge
               </p>
             </Grid>
             <Grid item xs={12}>

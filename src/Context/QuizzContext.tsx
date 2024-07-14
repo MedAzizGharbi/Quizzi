@@ -9,6 +9,7 @@ interface QuizzContextType {
   questions: Question[];
   currentQuestionIndex: number;
   userAnswers: string[];
+
   setQuestions: (questions: Question[]) => void;
   setCurrentQuestionIndex: (index: number) => void;
   setUserAnswers: (answers: string[]) => void;
